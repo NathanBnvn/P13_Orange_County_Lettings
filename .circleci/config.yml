@@ -10,7 +10,8 @@ orbs:
   # Orb commands and jobs help you with common scripting around a language/tool
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
-  python: circleci/python@1.5.0
+  python: circleci/python@2.0.3
+  heroku: circleci/heroku@1.2.6
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -35,9 +36,22 @@ jobs:
           # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
           # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
       - run:
+          name: Run linting
+          command: flake8
+
+      - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: pytest
+  
+  deploy:
+    executor: heroku/default # use the default executor defined within the orb
+
+    steps:
+      - attach_workspace:
+          at: ~/PYTHON-OC-LETTINGS-FR
+      - heroku/deploy-via-git:
+          force: true # force push when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -46,3 +60,7 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - deploy:
+          filters:
+            branches:
+              only: master

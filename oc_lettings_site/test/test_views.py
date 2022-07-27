@@ -1,8 +1,7 @@
-from django.test import TestCase, Client
+from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertTemplateUsed
 
-# Create your tests here.
 
 def test_index():
     client = Client()

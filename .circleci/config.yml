@@ -47,7 +47,7 @@ jobs:
 
   dockerize:
     docker:
-      - image: cimg/base:2022.03
+      - image: $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1
     steps:
       - checkout
       - setup_remote_docker
@@ -93,9 +93,6 @@ workflows:
             branches:
               only: master
       - dockerize:
-          name: dockerize
-          image: nighthawks72/orange_county_lettings
-          tag: $CIRCLE_SHA1
           requires:
             - build-and-test
           filters:

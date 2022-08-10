@@ -100,7 +100,6 @@ workflows:
               only: master
       - deploy-to-prod:
           requires:
-            - build-and-test
             - dockerize
           filters:
             branches:

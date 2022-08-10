@@ -61,7 +61,7 @@ jobs:
           name: Push application Docker image
           command: |
             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_USER_PWD
-            docker push orange_county_lettings
+            docker push nighthawks72/orange_county_lettings
 
   # deploy-to-prod:
   #   require:

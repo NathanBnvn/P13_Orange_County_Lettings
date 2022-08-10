@@ -44,26 +44,26 @@ jobs:
           # This assumes pytest is installed via the install-package step above
           command: pytest
   
-  deploy:
-    require:
-      - build-and-test
-    machine: true
+  # deploy:
+  #   require:
+  #     - build-and-test
+  #   machine: true
 
-    steps:
-      - checkout
-      - run:
-          name: Push Docker image to Heroku
-          command: |
-            set -x
-            sudo curl https://cli-assets.heroku.com/install.sh | sh
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-            HEROKU API KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
-            HEROKU API KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Push Docker image to Heroku
+  #         command: |
+  #           set -x
+  #           sudo curl https://cli-assets.heroku.com/install.sh | sh
+  #           HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+  #           HEROKU API KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
+  #           HEROKU API KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  master_branch: # This is the name of the workflow, feel free to change it to better match your workflow.
+  master-branch: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test:
@@ -79,14 +79,14 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
-          requires:
-            - build-and-test
-            - dockerize
-          filters:
-            branches:
-              only: master
+      # - deploy:
+      #     requires:
+      #       - build-and-test
+      #       - dockerize
+      #     filters:
+      #       branches:
+      #         only: master
   
-  other_branch:
+  other-branch:
     jobs:
     - build-and-test

@@ -48,6 +48,9 @@ jobs:
   dockerize:
     docker:
       - image: docker:lastest
+        auth:
+          username: $DOCKER_HUB_USERNAME
+          password: $DOCKERHUB_ACCESS_TOKEN
     steps:
       - checkout
       - setup_remote_docker

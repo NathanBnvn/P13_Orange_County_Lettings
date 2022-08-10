@@ -109,5 +109,6 @@ workflows:
   other-branch:
     jobs:
     - build-and-test:
-        branches:
-          ignore: master
+        filters:
+          branches:
+            ignore: master

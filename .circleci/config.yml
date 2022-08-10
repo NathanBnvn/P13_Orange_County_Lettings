@@ -61,7 +61,7 @@ jobs:
           name: Push application Docker image
           command: |
             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_USER_PWD
-            docker push $CIRCLE_SHA1 orange_county_lettings
+            docker push orange_county_lettings$CIRCLE_SHA1
 
   # deploy-to-prod:
   #   require:

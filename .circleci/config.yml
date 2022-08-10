@@ -65,12 +65,7 @@ jobs:
 
 
   deploy-to-prod:
-    require:
-      - build-and-test
-      - dockerise
-
     machine: true
-
     steps:
       - checkout
       - run:
@@ -100,6 +95,7 @@ workflows:
               only: master
       - deploy-to-prod:
           requires:
+            - build-and-test
             - dockerize
           filters:
             branches:

@@ -88,8 +88,6 @@ workflows:
             branches:
               only: master
       - dockerize:
-          image: $DOCKER_HUB_USERNAME/orange_county_lettings
-          tag: $CIRCLE SHA1
           requires:
             - build-and-test
           filters:

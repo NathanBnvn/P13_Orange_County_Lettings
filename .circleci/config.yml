@@ -65,7 +65,9 @@ jobs:
 
 
   deploy-to-prod:
-    machine: true
+    docker:
+      - image: $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1
+    # machine: true
     steps:
       - checkout
       - run:

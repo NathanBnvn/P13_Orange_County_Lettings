@@ -88,6 +88,9 @@ workflows:
             branches:
               only: master
       - dockerize:
+          name: containerize
+          image: $DOCKER_HUB_USERNAME/orange_county_lettings
+          tag: $CIRCLE SHA1
           requires:
             - build-and-test
           filters:
@@ -96,7 +99,7 @@ workflows:
       - deploy-to-prod:
           requires:
             - build-and-test
-            - dockerize
+            - containerize
           filters:
             branches:
               only: master

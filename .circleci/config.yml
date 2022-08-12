@@ -67,16 +67,18 @@ jobs:
   deploy-to-prod:
     docker:
       - image: $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1
-    # machine: true
+        auth:
+          username: $DOCKER_HUB_USERNAME
+          password: $DOCKERHUB_ACCESS_TOKEN
     steps:
       - checkout
       - run:
           name: Push Docker image to Heroku
           command: |
-            sudo curl https://cli-assets.heroku.com/install.sh | sh
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

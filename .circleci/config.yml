@@ -71,10 +71,8 @@ jobs:
           name: Push Docker image to Heroku
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
-
+            docker tag $DOCKER_HUB_USERNAME/orange_county_lettings registry.heroku.com/oc-lettings-23/web
+            docker push registry.heroku.com/oc-lettings-23/web
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

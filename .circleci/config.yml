@@ -74,7 +74,6 @@ jobs:
       - run:
           name: Push Docker image to Heroku
           command: |
-            sudo curl https://cli-assets.heroku.com/install.sh | sh
             heroku container:login
             heroku container:push web -a =$HEROKU_APP_NAME
             heroku container:release -a $HEROKU_APP_NAME web

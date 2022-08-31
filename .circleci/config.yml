@@ -71,6 +71,7 @@ jobs:
           name: Push Docker image to Heroku
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
+            heroku container:login
             docker tag $DOCKER_HUB_USERNAME/orange_county_lettings registry.heroku.com/oc-lettings-23/web
             docker push registry.heroku.com/oc-lettings-23/web
 

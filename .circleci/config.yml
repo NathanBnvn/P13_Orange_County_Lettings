@@ -64,20 +64,16 @@ jobs:
             docker push $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1
 
   deploy-to-prod:
-    # machine: true
-    executor: heroku/default
+    machine: true
     steps:
       - checkout
-      - heroku/install
       - run:
           name: Push Docker image to Heroku
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-            heroku container:push web --arg NODE_ENV=production -a $HEROKU_APP_NAME
-            heroku container:release web -a $HEROKU_APP_NAME
-          #  HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
-          #  HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
 
 
 # Invoke jobs via workflows

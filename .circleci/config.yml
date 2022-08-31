@@ -66,6 +66,9 @@ jobs:
   deploy-to-prod:
     docker:
     - image: $DOCKER_HUB_USERNAME/orange_county_lettings
+      auth:
+        username: $DOCKER_HUB_USERNAME
+        password: $DOCKERHUB_ACCESS_TOKEN
     steps:
       - checkout
       - run:

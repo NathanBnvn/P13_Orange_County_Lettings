@@ -60,17 +60,12 @@ jobs:
             docker push $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1
 
   deploy-to-prod:
-    docker:
-    - image: $DOCKER_HUB_USERNAME/orange_county_lettings
-      auth:
-        username: $DOCKER_HUB_USERNAME
-        password: $DOCKERHUB_ACCESS_TOKEN
+    machine: true
     steps:
       - checkout
       - run:
           name: Push Docker image to Heroku
           command: |
-            docker build --platform linux/amd64
             docker tag $DOCKER_HUB_USERNAME/orange_county_lettings registry.heroku.com/${YOUR_APP_NAME}/web .
             docker push registry.heroku.com/${YOUR_APP_NAME}/web
 

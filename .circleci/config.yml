@@ -61,12 +61,13 @@ jobs:
 
   deploy-to-prod:
     machine:
-      image: ubuntu-2004:2022.07.1
+      image: $DOCKER_HUB_USERNAME/orange_county_lettings
     steps:
       - checkout
       - run:
           name: Push Docker image to Heroku
           command: |
+            docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_USER_PWD
             docker tag $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1 registry.heroku.com/${HEROKU_APP_NAME}/web
             docker push registry.heroku.com/${HEROKU_APP_NAME}/web
             heroku container:release web -a ${HEROKU_APP_NAME}

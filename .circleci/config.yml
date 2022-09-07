@@ -47,7 +47,7 @@ jobs:
 
   dockerize:
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2004:2022.07.1
     steps:
       - checkout
       - run:

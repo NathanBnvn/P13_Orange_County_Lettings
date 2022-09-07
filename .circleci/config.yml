@@ -68,8 +68,7 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             heroku container:login
-            heroku container:push web -a =$HEROKU_APP_NAME
-            heroku container:release -a $HEROKU_APP_NAME web
+            heroku container:push web -a =${HEROKU_APP_NAME}
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

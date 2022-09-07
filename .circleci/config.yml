@@ -60,14 +60,16 @@ jobs:
             docker push $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1
 
   deploy-to-prod:
-    machine: true
+    machine:
+      image: ubuntu-2004:2022.07.1
     steps:
       - checkout
       - run:
           name: Push Docker image to Heroku
           command: |
-            docker tag $DOCKER_HUB_USERNAME/orange_county_lettings registry.heroku.com/${HEROKU_APP_NAME}/web .
+            docker tag $DOCKER_HUB_USERNAME/orange_county_lettings registry.heroku.com/${HEROKU_APP_NAME}/web
             docker push registry.heroku.com/${HEROKU_APP_NAME}/web
+            heroku container:release web -a ${HEROKU_APP_NAME}
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

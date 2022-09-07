@@ -1,4 +1,4 @@
-FROM python:3
+FROM --platform=linux/arm64 python:3.7-alpine
 ADD . /PYTHON-OC-LETTINGS-FR/
 WORKDIR /PYTHON-OC-LETTINGS-FR/
 

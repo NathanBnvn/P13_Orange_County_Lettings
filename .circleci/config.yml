@@ -60,8 +60,7 @@ jobs:
             docker push $DOCKER_HUB_USERNAME/orange_county_lettings:$CIRCLE_SHA1
 
   deploy-to-prod:
-    machine:
-      image: $DOCKER_HUB_USERNAME/orange_county_lettings
+    machine: true
     steps:
       - checkout
       - run:

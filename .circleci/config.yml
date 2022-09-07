@@ -46,11 +46,8 @@ jobs:
   
 
   dockerize:
-    docker:
-      - image: docker:17.05.0-ce-git
-        auth:
-          username: $DOCKER_HUB_USERNAME
-          password: $DOCKERHUB_ACCESS_TOKEN
+    machine:
+      image: ubuntu-2004:current
     steps:
       - checkout
       - setup_remote_docker

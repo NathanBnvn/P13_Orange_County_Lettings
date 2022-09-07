@@ -66,7 +66,7 @@ jobs:
       - run:
           name: Push Docker image to Heroku
           command: |
-            docker buildx build --platform linux/amd64 $DOCKER_HUB_USERNAME/orange_county_lettings .
+            docker buildx build --platform linux/amd64 ${YOUR_APP_NAME} .
             docker tag $DOCKER_HUB_USERNAME/orange_county_lettings registry.heroku.com/${YOUR_APP_NAME}/web .
             docker push registry.heroku.com/${YOUR_APP_NAME}/web
 

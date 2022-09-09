@@ -66,9 +66,9 @@ jobs:
           name: Push Docker image to Heroku
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container: login
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container: push -a ${HEROKU_APP_NAME} web
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container: release -a ${HEROKU_APP_NAME} web
+            heroku container: login
+            heroku container: push -a ${HEROKU_APP_NAME} web
+            heroku container: release -a ${HEROKU_APP_NAME} web
 
         # docker tag orange_county_lettings registry.heroku.com/${HEROKU_APP_NAME}/web
         # docker push registry.heroku.com/${HEROKU_APP_NAME}/web

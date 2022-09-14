@@ -68,10 +68,8 @@ jobs:
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             heroku container:login
             docker buildx build --load --platform linux/amd64 -t registry.heroku.com/${HEROKU_APP_NAME}/web .
-
-        # docker tag $DOCKER_HUB_USERNAME/orange_county_lettings registry.heroku.com/${HEROKU_APP_NAME}/web
-        # docker push registry.heroku.com/${HEROKU_APP_NAME}/web
-        # heroku container:release web -a ${HEROKU_APP_NAME}
+            docker push registry.heroku.com/${HEROKU_APP_NAME}/web
+            heroku container:release web -a ${HEROKU_APP_NAME}
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

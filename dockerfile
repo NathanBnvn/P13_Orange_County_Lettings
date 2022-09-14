@@ -16,4 +16,5 @@ RUN chgrp -R 0 /PYTHON-OC-LETTINGS-FR \
     && pip install -r requirements.txt
 EXPOSE $PORT
 
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi:application
+CMD gunicorn --bind 0.0.0.0:$PORT
+# CMD gunicorn app:server --bind 0.0.0.0:$PORT --preload

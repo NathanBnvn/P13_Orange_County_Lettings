@@ -1,4 +1,4 @@
-FROM python:3
+FROM --platform=linux/amd64 python:3
 ADD . /PYTHON-OC-LETTINGS-FR/
 WORKDIR /PYTHON-OC-LETTINGS-FR/
 

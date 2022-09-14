@@ -65,6 +65,7 @@ jobs:
       - run:
           name: Push Docker image to Heroku
           command: |
+            heroku container:login
             docker tag ${DOCKER_IMAGE_ID} registry.heroku.com/${HEROKU_APP_NAME}/web
             docker push registry.heroku.com/${HEROKU_APP_NAME}/web
         # heroku container:release web -a ${HEROKU_APP_NAME}

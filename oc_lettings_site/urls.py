@@ -8,5 +8,4 @@ urlpatterns = [
     path('', include('lettings.urls')),
     path('', include('profiles.urls')),
     path('admin/', admin.site.urls),
-    path('sentry-debug/', views.trigger_error),
 ]

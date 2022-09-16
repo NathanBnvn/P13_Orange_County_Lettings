@@ -75,3 +75,25 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+#### Déploiement
+
+Pour déployer le site :
+
+- Après une modification sur la branche master :
+  - `git commit -m '<message-de-commit>`
+  - `git push`
+
+Via le pipeline Circle CI, le code va être compilé puis testé, vérifiant le linting et les tests unitaires
+S'ensuit la conteneurisation du projet et la mise en production sur Heroku
+
+- Après une modification sur une autre branche que master :
+  - `git commit -m '<message-de-commit>`
+  - `git push`
+  - `git checkout master`
+  - `git rebase <nom-de-branche>`
+
+Après avoir répercuté les modifications sur la branche master suivre les étapes susmentionné 
+Circle CI vous guidera dans le suivi du processus automatisé et vous indiquera si un bug survient. 
+
+- Le site se trouve `https://oc-lettings-23.herokuapp.com/`

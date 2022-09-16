@@ -117,7 +117,7 @@ STATIC_URL = '/static/'
 # Sentry
 
 sentry_sdk.init(
-    dsn="https://examplePublicKey@o0.ingest.sentry.io/0",
+    dsn=config('SENTRY_DNS'),
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%

@@ -93,7 +93,9 @@ S'ensuit la conteneurisation du projet et la mise en production sur Heroku
   - `git checkout master`
   - `git rebase <nom-de-branche>`
 
-Après avoir répercuté les modifications sur la branche master suivre les étapes susmentionné 
+Après avoir répercuté les modifications sur la branche master suivre les étapes susmentionné. 
 Circle CI vous guidera dans le suivi du processus automatisé et vous indiquera si un bug survient. 
+
+Afin d'intégrer Sentry, il vous faudra générer une clé client dans un fichier .env en tant que Sentry_DNS
 
 - Le site se trouve `https://oc-lettings-23.herokuapp.com/`
